@@ -3,7 +3,7 @@ package article
 import (
 	"time"
 
-	"github.com/inari111/layered-architecture-study/doamin/article"
+	"github.com/inari111/layered-architecture-study/domain/article"
 )
 
 type Article struct {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"time"
 
-	"github.com/inari111/layered-architecture-study/doamin/article"
+	"github.com/inari111/layered-architecture-study/domain/article"
 )
 
 type Application interface {

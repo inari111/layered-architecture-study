@@ -3,7 +3,7 @@ package article
 import (
 	"context"
 
-	"github.com/inari111/layered-architecture-study/doamin/article"
+	"github.com/inari111/layered-architecture-study/domain/article"
 	"go.mercari.io/datastore/aedatastore"
 	"go.mercari.io/datastore/boom"
 )
