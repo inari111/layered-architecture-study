@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package article;
+option go_package = "pb";
+
+import "google/protobuf/timestamp.proto";
+
+service ArticleService {
+    rpc Create (ArticleServiceCreateRequest) returns (ArticleServiceCreateResponsee);
+}
+
+message Article {
+    string id = 1;
+    string title = 2;
+    string body = 3;
+    google.protobuf.Timestamp created_at = 4;
+    google.protobuf.Timestamp updated_at = 5;
+}
+
+message ArticleServiceCreateRequest {
+    string title = 1;
+    string body = 2;
+}
+
+message ArticleServiceCreateResponsee {
+    Article article = 1;
+}
+
