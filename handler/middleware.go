@@ -1,4 +1,4 @@
-package api
+package handler
 
 import (
 	"context"
@@ -10,7 +10,7 @@ import (
 
 const requestKey = "__request__"
 
-func injectAppEngineContext(base http.Handler) http.Handler {
+func InjectAppEngineContext(base http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		ctx := appengine.WithContext(r.Context(), r)
 		context.WithValue(ctx, requestKey, r)
@@ -18,7 +18,7 @@ func injectAppEngineContext(base http.Handler) http.Handler {
 	})
 }
 
-func userAuthHooks() *twirp.ServerHooks {
+func UserAuthHooks() *twirp.ServerHooks {
 	return &twirp.ServerHooks{
 		// TODO
 		RequestReceived: func(ctx context.Context) (context.Context, error) {
@@ -27,7 +27,7 @@ func userAuthHooks() *twirp.ServerHooks {
 	}
 }
 
-func loggingErrorHooks() *twirp.ServerHooks {
+func LoggingErrorHooks() *twirp.ServerHooks {
 	return &twirp.ServerHooks{
 		// TODO
 		Error: func(ctx context.Context, twerr twirp.Error) context.Context {

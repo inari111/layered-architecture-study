@@ -8,7 +8,7 @@ import (
 	"go.mercari.io/datastore/boom"
 )
 
-func NewRepository() *repository {
+func NewRepository() article.Repository {
 	return &repository{}
 }
 
