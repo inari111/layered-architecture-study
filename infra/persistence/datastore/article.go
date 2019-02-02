@@ -1,4 +1,4 @@
-package article
+package datastore
 
 import (
 	"time"
@@ -14,7 +14,7 @@ type Article struct {
 	UpdatedAt time.Time
 }
 
-func (a *Article) toDomain() *article.Article {
+func (a *Article) ToDomain() *article.Article {
 	return &article.Article{
 		ID:        article.ID(a.ID),
 		Title:     a.Title,
@@ -24,7 +24,7 @@ func (a *Article) toDomain() *article.Article {
 	}
 }
 
-func articleFrom(a *article.Article) *Article {
+func ArticleFrom(a *article.Article) *Article {
 	return &Article{
 		Title:     a.Title,
 		Body:      a.Body,
