@@ -14,21 +14,21 @@ type Article struct {
 	UpdatedAt time.Time
 }
 
-func toEntity(v *Article) *article.Entity {
-	return &article.Entity{
-		ID:        article.ID(v.ID),
-		Title:     v.Title,
-		Body:      v.Body,
-		CreatedAt: v.CreatedAt,
-		UpdatedAt: v.UpdatedAt,
+func (a *Article) toDomain() *article.Article {
+	return &article.Article{
+		ID:        article.ID(a.ID),
+		Title:     a.Title,
+		Body:      a.Body,
+		CreatedAt: a.CreatedAt,
+		UpdatedAt: a.UpdatedAt,
 	}
 }
 
-func fromEntity(v *article.Entity) *Article {
+func articleFrom(a *article.Article) *Article {
 	return &Article{
-		Title:     v.Title,
-		Body:      v.Body,
-		CreatedAt: v.CreatedAt,
-		UpdatedAt: v.UpdatedAt,
+		Title:     a.Title,
+		Body:      a.Body,
+		CreatedAt: a.CreatedAt,
+		UpdatedAt: a.UpdatedAt,
 	}
 }

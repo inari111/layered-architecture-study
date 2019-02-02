@@ -8,7 +8,7 @@ import (
 )
 
 type Application interface {
-	Create(ctx context.Context, title, body string) (*article.Entity, error)
+	Create(ctx context.Context, title, body string) (*article.Article, error)
 }
 
 func NewApplication(repo article.Repository, now domain.CurrentTimeFunc) Application {
@@ -23,15 +23,15 @@ type articleAppImpl struct {
 	now  domain.CurrentTimeFunc
 }
 
-func (app *articleAppImpl) Create(ctx context.Context, title, body string) (*article.Entity, error) {
-	entity := article.Entity{
+func (app *articleAppImpl) Create(ctx context.Context, title, body string) (*article.Article, error) {
+	a := article.Article{
 		Title:     title,
 		Body:      body,
 		CreatedAt: app.now(),
 		UpdatedAt: app.now(),
 	}
-	if err := app.repo.Create(ctx, &entity); err != nil {
+	if err := app.repo.Create(ctx, &a); err != nil {
 		return nil, err
 	}
-	return &entity, nil
+	return &a, nil
 }

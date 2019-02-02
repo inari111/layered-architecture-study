@@ -14,13 +14,13 @@ func NewRepository() article.Repository {
 
 type repository struct{}
 
-func (repo *repository) Create(ctx context.Context, entity *article.Entity) error {
+func (repo *repository) Create(ctx context.Context, article *article.Article) error {
 	client, err := aedatastore.FromContext(ctx)
 	if err != nil {
 		return err
 	}
 	b := boom.FromClient(ctx, client)
-	if _, err := b.Put(fromEntity(entity)); err != nil {
+	if _, err := b.Put(articleFrom(article)); err != nil {
 		return err
 	}
 	return nil

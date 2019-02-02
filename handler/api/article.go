@@ -22,6 +22,8 @@ type articleService struct {
 }
 
 func (s *articleService) Create(ctx context.Context, req *pb.ArticleServiceCreateRequest) (*pb.ArticleServiceCreateResponsee, error) {
+	// TODO: バリデーション
+
 	entity, err := s.app.Create(ctx, req.GetTitle(), req.GetBody())
 	if err != nil {
 		return nil, err
