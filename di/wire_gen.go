@@ -6,19 +6,19 @@
 package di
 
 import (
-	article2 "github.com/inari111/layered-architecture-study/application/article"
+	"github.com/inari111/layered-architecture-study/application/article"
 	"github.com/inari111/layered-architecture-study/domain"
 	"github.com/inari111/layered-architecture-study/handler/api"
-	"github.com/inari111/layered-architecture-study/infra/persistence/article"
+	"github.com/inari111/layered-architecture-study/infra/persistence/repository"
 	"net/http"
 )
 
 // Injectors from api.go:
 
 func InitializeAPIHandler() http.Handler {
-	repository := article.NewRepository()
+	articleRepository := repository.NewArticleRepository()
 	currentTimeFunc := domain.NewCurrentTimeFunc()
-	application := article2.NewApplication(repository, currentTimeFunc)
+	application := article.NewApplication(articleRepository, currentTimeFunc)
 	articleService := api.NewArticleService(application)
 	handler := api.NewHandler(articleService)
 	return handler

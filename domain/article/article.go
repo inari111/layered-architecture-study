@@ -8,7 +8,7 @@ func (id ID) String() string {
 	return string(id)
 }
 
-type Entity struct {
+type Article struct {
 	ID        ID
 	Title     string
 	Body      string
