@@ -20,6 +20,7 @@ func InitializeAPIHandler() http.Handler {
 		repository.NewArticleRepository,
 		article.NewApplication,
 		api.NewArticleService,
+		api.NewUserService,
 		api.NewHandler,
 	)
 	return nil

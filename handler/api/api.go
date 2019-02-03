@@ -16,6 +16,7 @@ type server struct {
 
 func NewHandler(
 	articleService pb.ArticleService,
+	userService pb.UserService,
 ) http.Handler {
 	mux := http.NewServeMux()
 
@@ -29,6 +30,13 @@ func NewHandler(
 			pathPrefix: pb.ArticleServicePathPrefix,
 			twServer: pb.NewArticleServiceServer(
 				articleService,
+				hooks,
+			),
+		},
+		{
+			pathPrefix: pb.UserServicePathPrefix,
+			twServer: pb.NewUserServiceServer(
+				userService,
 				hooks,
 			),
 		},

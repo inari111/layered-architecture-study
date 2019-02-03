@@ -20,6 +20,7 @@ func InitializeAPIHandler() http.Handler {
 	currentTimeFunc := domain.NewCurrentTimeFunc()
 	application := article.NewApplication(articleRepository, currentTimeFunc)
 	articleService := api.NewArticleService(application)
-	handler := api.NewHandler(articleService)
+	userService := api.NewUserService()
+	handler := api.NewHandler(articleService, userService)
 	return handler
 }
