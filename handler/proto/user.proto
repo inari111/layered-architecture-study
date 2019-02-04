@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package article;
+option go_package = "pb";
+
+import "google/protobuf/timestamp.proto";
+
+service UserService {
+    // ユーザー登録
+    rpc Register (UserServiceRegisterRequest) returns (UserServiceRegisterResponse);
+
+    // プロフィール更新
+    rpc UpdateProfile (UserServiceUpdateProfileRequest) returns (UserServiceUpdateProfileResponse);
+}
+
+message User {
+    string id = 1;
+    Profile profile = 2;
+    google.protobuf.Timestamp created_at = 3;
+    google.protobuf.Timestamp updated_at = 4;
+}
+
+message Profile {
+   string name = 1;
+   uint32 age = 2;
+   string description = 3;
+}
+
+message UserServiceRegisterRequest {}
+
+message UserServiceRegisterResponse {}
+
+message UserServiceUpdateProfileRequest {
+    string name = 1;
+    uint32 age = 2;
+    string description = 3;
+}
+
+message UserServiceUpdateProfileResponse {}
+
