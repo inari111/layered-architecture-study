@@ -28,9 +28,7 @@ message Profile {
 
 message UserServiceRegisterRequest {}
 
-message UserServiceRegisterResponse {
-    User user = 1;
-}
+message UserServiceRegisterResponse {}
 
 message UserServiceUpdateProfileRequest {
     string name = 1;
@@ -38,7 +36,5 @@ message UserServiceUpdateProfileRequest {
     string description = 3;
 }
 
-message UserServiceUpdateProfileResponse {
-    User user = 1;
-}
+message UserServiceUpdateProfileResponse {}
 

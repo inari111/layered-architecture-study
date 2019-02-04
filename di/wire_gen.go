@@ -7,6 +7,7 @@ package di
 
 import (
 	"github.com/inari111/layered-architecture-study/application/article"
+	"github.com/inari111/layered-architecture-study/application/user"
 	"github.com/inari111/layered-architecture-study/domain"
 	"github.com/inari111/layered-architecture-study/handler/api"
 	"github.com/inari111/layered-architecture-study/infra/persistence/repository"
@@ -20,7 +21,10 @@ func InitializeAPIHandler() http.Handler {
 	currentTimeFunc := domain.NewCurrentTimeFunc()
 	application := article.NewApplication(articleRepository, currentTimeFunc)
 	articleService := api.NewArticleService(application)
-	userService := api.NewUserService()
+	userRepository := repository.NewUserRepository()
+	profileRepository := repository.NewUserProfileRepository()
+	userApplication := user.NewApplication(userRepository, profileRepository, currentTimeFunc)
+	userService := api.NewUserService(userApplication)
 	handler := api.NewHandler(articleService, userService)
 	return handler
 }
